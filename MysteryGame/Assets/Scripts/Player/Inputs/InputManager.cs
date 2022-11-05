@@ -42,8 +42,8 @@ namespace Inputs
             rcv.h_move = Input.GetAxis("Move H");
             rcv.v_move = Input.GetAxis("Move V");
 
-            rcv.h_cam = Mathf.Clamp(Input.GetAxis("Camera H"), -1f, 1f);
-            rcv.v_cam = Mathf.Clamp(Input.GetAxis("Camera V"), -1f, 1f);
+            rcv.h_cam = Input.GetAxisRaw("Camera H");//Mathf.Clamp(Input.GetAxisRaw("Camera H"), -1f, 1f);
+            rcv.v_cam = Input.GetAxisRaw("Camera V");//Mathf.Clamp(Input.GetAxisRaw("Camera V"), -1f, 1f);
         }
     }
 }
