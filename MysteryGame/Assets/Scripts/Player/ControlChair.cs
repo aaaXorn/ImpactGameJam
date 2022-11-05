@@ -7,18 +7,21 @@ namespace Player
 {
     [RequireComponent(typeof(InputReceiver))]
     [RequireComponent(typeof(Movement))]
-    [RequireComponent(typeof(CameraWalk))]
-    public class ControlWalk : MonoBehaviour
+    [RequireComponent(typeof(ChairMovement))]
+    [RequireComponent(typeof(CameraChair))]
+    public class ControlChair : MonoBehaviour
     {
         InputReceiver _input;
         Movement _move;
-        CameraWalk _cam;
+        ChairMovement _chairMove;
+        CameraChair _cam;
 
         void Awake()
         {
             _input = GetComponent<InputReceiver>();
             _move = GetComponent<Movement>();
-            _cam = GetComponent<CameraWalk>();
+            _chairMove = GetComponent<ChairMovement>();
+            _cam = GetComponent<CameraChair>();
         }
 
         void Update()
@@ -27,6 +30,9 @@ namespace Player
 
             //rotate and position the camera
             _cam.Rotate(_input.h_cam, _input.v_cam);
+
+            //rotate the player
+            if(_input.h_move != 0) _chairMove.RotateChair(_input.h_move);
         }
 
         void FixedUpdate()
@@ -34,12 +40,12 @@ namespace Player
             if(!_input.isControlled) return;
 
             //sets the direction based on the player's input
-            Vector3 dir = new Vector3(_input.h_move, 0, _input.v_move).normalized;
+            Vector3 dir_move = new Vector3(0, 0, _input.v_move).normalized;
             //transforms the direction from world to local
-            dir = transform.TransformDirection(dir);
+            dir_move = transform.TransformDirection(dir_move);
             //moves the player
-            if(dir != Vector3.zero)
-                _move.MoveForce(dir);
+            if(dir_move != Vector3.zero)
+                _move.MoveForce(dir_move);
             //rigidbody drag without Y
             _move.CustomDrag();
         }

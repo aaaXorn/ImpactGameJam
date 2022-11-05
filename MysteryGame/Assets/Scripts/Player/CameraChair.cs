@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class CameraWalk : MonoBehaviour
+    public class CameraChair : MonoBehaviour
     {
         [Tooltip("Object with the camera component.")]
         [SerializeField] GameObject _camObj;
@@ -51,8 +51,6 @@ namespace Player
 
             //rotates the camera
             _camObj.transform.rotation = Quaternion.Euler(_vRot, _hRot, 0);
-            //rotates the player
-            transform.rotation = Quaternion.Euler(transform.rotation.x, _hRot, transform.rotation.z);
         }
     }
 }
