@@ -28,11 +28,13 @@ namespace Player
         {
             if(!_input.isControlled) return;
 
-            //rotate and position the camera
-            _cam.Rotate(_input.h_cam, _input.v_cam);
-
             //rotate the player
             if(_input.h_move != 0) _chairMove.RotateChair(_input.h_move);
+
+            //clamps the player rotation, so they don't fall over
+            _chairMove.ClampRotation();
+
+            _cam.PosAndRot();
         }
 
         void FixedUpdate()
@@ -46,8 +48,9 @@ namespace Player
             //moves the player
             if(dir_move != Vector3.zero)
                 _move.MoveForce(dir_move);
+            
             //rigidbody drag without Y
-            _move.CustomDrag();
+            _move.CustomDragWUp(1.25f);
         }
     }
 }

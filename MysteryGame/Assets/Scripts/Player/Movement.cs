@@ -55,5 +55,15 @@ namespace Player
             Vector3 dragVec = new Vector3(-_rigid.velocity.x, 0, -_rigid.velocity.z) * _moveDrag;
             _rigid.AddForce(dragVec);
         }
+        //used in FixedUpdate()
+        public void CustomDragWUp(float up_mod = 1)
+        {
+            //creates a drag effect, similar to rigidbody drag, but only applying the Y coordinate when moving upwards
+            float y_drag = 0;
+            if(_rigid.velocity.y > 0.1f) y_drag = -_rigid.velocity.y;
+
+            Vector3 dragVec = new Vector3(-_rigid.velocity.x, y_drag * up_mod, -_rigid.velocity.z) * _moveDrag;
+            _rigid.AddForce(dragVec);
+        }
     }
 }
