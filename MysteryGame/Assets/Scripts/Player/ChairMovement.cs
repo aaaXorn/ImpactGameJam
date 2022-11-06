@@ -21,6 +21,8 @@ namespace Player
             transform.Rotate(rot_dir);
         }
 
+        #region experimental (unused)
+        /*
         //stops the chair from flipping over
         public void ClampRotation()
         {
@@ -29,8 +31,8 @@ namespace Player
             float rotZ = transform.eulerAngles.z;
 
             //if the target rotation is 0 (true) or 360 (false)
-            bool toZeroX = (rotX < 180f);
-            bool toZeroZ = (rotZ < 180f);
+            bool toZeroX = (rotX < 180f && rotX >= 0);
+            bool toZeroZ = (rotZ < 180f && rotZ >= 0);
 
             //if the rotation needs clamping
             bool clampX = (rotX > _max_rot && rotX < (360f - _max_rot));
@@ -45,15 +47,21 @@ namespace Player
             }
 
             //gradually rotates the chair back to 0
-            rotX = Mathf.MoveTowards(rotX, (toZeroX ? 0 : 360), _clampRotSpd * Time.deltaTime);
-            rotZ = Mathf.MoveTowards(rotZ, (toZeroZ ? 0 : 360), _clampRotSpd * Time.deltaTime);
+            //rotX = Mathf.MoveTowards(rotX, (toZeroX ? 0 : 360), _clampRotSpd * Time.deltaTime);
+            //rotZ = Mathf.MoveTowards(rotZ, (toZeroZ ? 0 : 360), _clampRotSpd * Time.deltaTime);
 
             print("X " + rotX + " Z " + rotZ);
             //applies the new rotation
+            //transform.eulerAngles = new Vector3(rotX, transform.eulerAngles.y, rotZ);
+            
+            //remove Mathf.Move
             transform.eulerAngles = new Vector3(rotX, transform.eulerAngles.y, rotZ);
+            Vector3 dir = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+            Quaternion targetRotation = Quaternion.Euler(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * _clampRotSpd);
+            
         }
 
-        /*
         //wheelchair grounded check (unused)
 
         [Tooltip("Where each grounded check raycast will begin.")]
@@ -90,5 +98,6 @@ namespace Player
                 Debug.DrawRay(transf.position, -transform.up * _isGroundedRC_dist, Color.blue);
         }
         */
+        #endregion
     }
 }

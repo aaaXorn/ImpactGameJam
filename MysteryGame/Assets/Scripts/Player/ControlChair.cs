@@ -32,7 +32,7 @@ namespace Player
             if(_input.h_move != 0) _chairMove.RotateChair(_input.h_move);
 
             //clamps the player rotation, so they don't fall over
-            _chairMove.ClampRotation();
+            //_chairMove.ClampRotation();
 
             _cam.PosAndRot();
         }
@@ -40,7 +40,7 @@ namespace Player
         void FixedUpdate()
         {
             if(!_input.isControlled) return;
-
+            
             //sets the direction based on the player's input
             Vector3 dir_move = new Vector3(0, 0, _input.v_move).normalized;
             //transforms the direction from world to local
