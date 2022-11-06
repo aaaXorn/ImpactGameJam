@@ -15,6 +15,7 @@ public class interactor : MonoBehaviour
     public Vector2 defIconSize;
     public Sprite defInterIcon;
     public Vector2 defInterIconSize;
+    public Text toolTip;
 
     // UnityEvent onInteract;
     // Start is called before the first frame update
@@ -29,6 +30,8 @@ public class interactor : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, 2, interactionMask)){
             if(hit.collider.GetComponent<Interactable>() != false){
+                
+                toolTip.GetComponent<Text>().enabled = true;
                 int currID = hit.collider.GetComponent<Interactable>().id;
                 if(inter == null || inter.id != currID){
                     inter = hit.collider.GetComponent<Interactable>();
@@ -51,6 +54,7 @@ public class interactor : MonoBehaviour
                 }
             }
         }else{
+            toolTip.GetComponent<Text>().enabled= false;
             if(iImage.sprite != defIcon){
                 iImage.sprite = defIcon;
                 iImage.rectTransform.sizeDelta = defIconSize;
