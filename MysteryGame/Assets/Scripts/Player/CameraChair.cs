@@ -11,7 +11,7 @@ namespace Player
         [Tooltip("Object the camera will be following.")]
         [SerializeField] GameObject _camFollowObj;
 
-        [SerializeField] float _cam_rotSpd;
+        //[SerializeField] float _cam_rotSpd;
 
         void Start()
         {
@@ -31,7 +31,8 @@ namespace Player
         public void PosAndRot()
         {
             _camObj.transform.position = _camFollowObj.transform.position;
-            _camObj.transform.rotation = Quaternion.RotateTowards(_camObj.transform.rotation, _camFollowObj.transform.rotation, _cam_rotSpd * Time.deltaTime);
+            _camObj.transform.rotation = _camFollowObj.transform.rotation;
+            //= Quaternion.RotateTowards(_camObj.transform.rotation, _camFollowObj.transform.rotation, _cam_rotSpd * Time.deltaTime);
         }
     }
 }

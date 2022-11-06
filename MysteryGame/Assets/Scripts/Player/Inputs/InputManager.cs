@@ -45,5 +45,12 @@ namespace Inputs
             rcv.h_cam = Input.GetAxisRaw("Camera H");//Mathf.Clamp(Input.GetAxisRaw("Camera H"), -1f, 1f);
             rcv.v_cam = Input.GetAxisRaw("Camera V");//Mathf.Clamp(Input.GetAxisRaw("Camera V"), -1f, 1f);
         }
+
+        public void ChangeReceiver(InputReceiver rcv)
+        {
+            _currPlayer.isControlled = false;
+            rcv.isControlled = true;
+            _currPlayer = rcv;
+        }
     }
 }

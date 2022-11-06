@@ -29,7 +29,7 @@ namespace Player
         }
 
         //used in FixedUpdate()
-        public void MoveForce(Vector3 dir)
+        public void MoveForce(Vector3 dir, float mod = 1f)
         {
             //movement with rigidbody AddForce
 
