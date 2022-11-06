@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        id = 1;
+        // id = 1;
     }
 
     // Update is called once per frame

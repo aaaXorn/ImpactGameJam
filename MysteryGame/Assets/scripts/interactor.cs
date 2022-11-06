@@ -29,7 +29,8 @@ public class interactor : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, 2, interactionMask)){
             if(hit.collider.GetComponent<Interactable>() != false){
-                if(inter == null || inter.id != hit.collider.GetComponent<Interactable>().id){
+                int currID = hit.collider.GetComponent<Interactable>().id;
+                if(inter == null || inter.id != currID){
                     inter = hit.collider.GetComponent<Interactable>();
                 }
                 if(inter.iIcon != null){
@@ -46,7 +47,7 @@ public class interactor : MonoBehaviour
                 // onInteract = hit.collider.GetComponent<Interactable>().onInteract;
                 if(Input.GetKeyDown(KeyCode.E)){
                     // onInteract.invoke();
-                    Debug.Log("Gameobject: "+hit.collider.name);
+                    Debug.Log("Gameobject: "+hit.collider.name+" ID: "+currID);
                 }
             }
         }else{
