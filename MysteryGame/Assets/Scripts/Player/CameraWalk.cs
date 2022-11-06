@@ -32,6 +32,10 @@ namespace Player
             _hRot = transform.eulerAngles.y;
             //X axis is up/down
             _vRot = _camObj.transform.eulerAngles.x;
+
+            //cursor lock
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         //used in Update()

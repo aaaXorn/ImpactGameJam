@@ -21,6 +21,10 @@ namespace Player
                 Debug.LogError("_camObj not defined.");
                 Destroy(gameObject);
             }
+
+            //cursor lock
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         //used in Update()

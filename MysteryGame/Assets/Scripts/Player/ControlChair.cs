@@ -32,6 +32,7 @@ namespace Player
             if(_input.h_move != 0) _chairMove.RotateChair(_input.h_move);
 
             //clamps the player rotation, so they don't fall over
+            //experimental and still glitchy, so for now use rigidbody constraints instead
             //_chairMove.ClampRotation();
 
             _cam.PosAndRot();
