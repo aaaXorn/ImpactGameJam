@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Player
 {
@@ -10,6 +12,9 @@ namespace Player
     {
         Rigidbody _rigid;
         Movement _move;
+
+        [SerializeField] TextMeshProUGUI _tmpTxt;
+        [SerializeField] Image _img;
 
         //movement direction (forward/back)
         int _moveDir = 1;
@@ -57,12 +62,17 @@ namespace Player
                 if(_nextRight ? h_input >= 0.1f : h_input <= -0.1f)
                 {
                     print("move");
-                    _forceMod = _timeDiff / _maxTimeDiff;
+                    _forceMod = _timeDiff / _targetTime;
                     _movePressed = true;
 
                     _nextRight = !_nextRight;
+
+                    _tmpTxt.text = _nextRight ? "R" : "L";
                 }
             }
+
+            float bar = _timeDiff / _targetTime;
+            _img.fillAmount = 1 - bar;
 
             _walkTime += Time.deltaTime;
         }
