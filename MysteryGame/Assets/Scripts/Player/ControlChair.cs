@@ -16,9 +16,14 @@ namespace Player
         ChairMovement _chairMove;
         CameraChair _cam;
 
+        [Tooltip("Position of the armcrutch player after leaving the chair.")]
         [SerializeField] Transform _crutchSwapPos;
+        [Tooltip("Armcrutch player object.")]
         [SerializeField] GameObject _objCrutch;
         InputReceiver _walkInput;
+
+        [Tooltip("Detection collider for the player to return to the chair.")]
+        [SerializeField] GameObject _chairDetection;
 
         void Awake()
         {
@@ -69,7 +74,14 @@ namespace Player
             //moves the armcrutch player into position
             _objCrutch.transform.position = _crutchSwapPos.position;
 
+            RayHitboxSetActive(true);
+
             InputManager.Instance.ChangeReceiver(_walkInput);
+        }
+
+        public void RayHitboxSetActive(bool active)
+        {
+            _chairDetection.SetActive(active);
         }
     }
 }

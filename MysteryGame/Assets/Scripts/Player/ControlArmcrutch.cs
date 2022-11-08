@@ -20,8 +20,10 @@ namespace Player
         [Tooltip("Distance of the raycast that checks if the player can return to the chair.")]
         [SerializeField] float _chairReturnDist;
 
+        [Tooltip("Wheelchair player object.")]
         [SerializeField] GameObject _objChair;
         InputReceiver _chairInput;
+        ControlChair _chairControl;
 
         [SerializeField] Transform _transf_cam;
 
@@ -33,6 +35,7 @@ namespace Player
             _cam = GetComponent<CameraArmcrutch>();
 
             _chairInput = _objChair.GetComponent<InputReceiver>();
+            _chairControl = _objChair.GetComponent<ControlChair>();
         }
 
         void Start()
@@ -50,6 +53,7 @@ namespace Player
             _crutchMove.WalkTimer(_input.h_move);
 
             ReturnToChair();
+            _crutchMove.CheckDirection(_input.v_move);
         }
 
         void FixedUpdate()
@@ -72,7 +76,7 @@ namespace Player
                 if(_input.swap_move)
                 {
                     InputManager.Instance.ChangeReceiver(_chairInput);
-
+                    _chairControl.RayHitboxSetActive(false);
                     gameObject.SetActive(false);
                 }
             }
