@@ -20,5 +20,10 @@ namespace Inputs
         public float h_cam;
         //down/up
         public float v_cam;
+
+        //interact
+        public bool interact;
+        //swap between chair and armcrutch
+        public bool swap_move;
     }
 }

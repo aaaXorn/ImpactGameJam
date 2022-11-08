@@ -16,12 +16,18 @@ namespace Player
         ChairMovement _chairMove;
         CameraChair _cam;
 
+        [SerializeField] Transform _crutchSwapPos;
+        [SerializeField] GameObject _objCrutch;
+        InputReceiver _walkInput;
+
         void Awake()
         {
             _input = GetComponent<InputReceiver>();
             _move = GetComponent<Movement>();
             _chairMove = GetComponent<ChairMovement>();
             _cam = GetComponent<CameraChair>();
+
+            _walkInput = _objCrutch.GetComponent<InputReceiver>();
         }
 
         void Update()
@@ -36,6 +42,8 @@ namespace Player
             //_chairMove.ClampRotation();
 
             _cam.PosAndRot();
+
+            if(_input.swap_move) LeaveChair();
         }
 
         void FixedUpdate()
@@ -52,6 +60,16 @@ namespace Player
             
             //rigidbody drag without Y
             _move.CustomDragWUp(1.25f);
+        }
+
+        private void LeaveChair()
+        {
+            //exits the chair
+            _objCrutch.SetActive(true);
+            //moves the armcrutch player into position
+            _objCrutch.transform.position = _crutchSwapPos.position;
+
+            InputManager.Instance.ChangeReceiver(_walkInput);
         }
     }
 }

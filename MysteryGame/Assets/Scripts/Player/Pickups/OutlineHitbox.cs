@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Pickups
 {
-    public class OutlineHitbox : Monobehaviour
+    public class OutlineHitbox : MonoBehaviour
     {
         [SerializeField] Outline outline;
 
