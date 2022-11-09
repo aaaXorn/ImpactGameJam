@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 4621928493842378}
   - component: {fileID: 33567167589858232}
   - component: {fileID: 23102344952781532}
-  - component: {fileID: 95425986732370574}
+  - component: {fileID: 8207585389282918573}
   m_Layer: 0
   m_Name: table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4621928493842378
 Transform:
@@ -84,23 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95425986732370574
-Animator:
-  serializedVersion: 4
+--- !u!65 &8207585389282918573
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128999843324578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8f1dd86dd43118040908a785a7ba6a00, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6443535, y: 1.0553006, z: 0.93644327}
+  m_Center: {x: 0.6538177, y: 0.5276503, z: 0.40271175}
