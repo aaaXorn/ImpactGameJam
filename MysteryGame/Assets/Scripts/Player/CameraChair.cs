@@ -53,7 +53,7 @@ namespace Player
 
             //sets the variables used to rotate
             _hRot += inputX;
-            _hRot = Mathf.Clamp(_hRot, _camFollowObj.transform.rotation.y - 90f, _camFollowObj.transform.rotation.y + 90f);
+            //_hRot = Mathf.Clamp(_hRot, _camFollowObj.transform.rotation.y - 90f, _camFollowObj.transform.rotation.y + 90f);
             _vRot -= inputY;
             _vRot = Mathf.Clamp(_vRot, -90f, 90f);
 
