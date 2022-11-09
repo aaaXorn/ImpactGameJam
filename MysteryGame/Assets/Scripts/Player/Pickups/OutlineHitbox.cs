@@ -6,7 +6,7 @@ namespace Pickups
 {
     public class OutlineHitbox : MonoBehaviour
     {
-        [SerializeField] Outline outline;
+        [SerializeField] Outline _outline;
 
         //if the active coroutine is running
         bool _activeIsRunning;
@@ -14,6 +14,16 @@ namespace Pickups
         float _activeTime;
         [Tooltip("Total outline active time.")]
         [SerializeField] float _totalActiveTime;
+
+        [Tooltip("If true, this script's gameObject starts disabled.")]
+        [SerializeField] bool _startInactive;
+
+        void Start()
+        {
+            _outline.enabled = false;
+
+            if(_startInactive) gameObject.SetActive(false);
+        }
 
         public void AimedAt()
         {
@@ -25,20 +35,21 @@ namespace Pickups
 
         private IEnumerator ActiveTimer()
         {
-            _activeIsRunning = true;
             //enables the outline
-            outline.enabled = true;
+            _activeIsRunning = true;
+            _outline.enabled = true;
 
             //timer
             while(_activeTime >= 0f)
             {
                 _activeTime -= 0.1f;
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
             }
 
             //disables the outline
-            outline.enabled = false;
+            _activeIsRunning = false;
+            _outline.enabled = false;
         }
     }
 }

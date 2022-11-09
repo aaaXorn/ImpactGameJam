@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Inputs;
+using Pickups;
 
 namespace Player
 {
@@ -26,6 +27,9 @@ namespace Player
         ControlChair _chairControl;
 
         [SerializeField] Transform _transf_cam;
+
+        Collider _lastHit;
+        OutlineHitbox _outline;
 
         void Awake()
         {
@@ -66,11 +70,23 @@ namespace Player
         private void ReturnToChair()
         {
             Ray ray = new Ray(_transf_cam.position, transform.forward);
+            RaycastHit hit;
 
             //check if the chair is in range
-            if(Physics.Raycast(ray, _chairReturnDist, _chairLM))
+            if(Physics.Raycast(ray, out hit, _chairReturnDist, _chairLM))
             {
                 //interactable effect
+                if(_lastHit != hit.collider)
+                {
+                    _lastHit = hit.collider;
+                    _outline = _lastHit.GetComponent<OutlineHitbox>();
+                    print(_outline);
+                }
+
+                if(_outline != null)
+                {
+                    _outline.AimedAt();
+                }
 
                 //move into the chair
                 if(_input.swap_move)
