@@ -46,7 +46,7 @@ namespace Player
             //experimental and still glitchy, so for now use rigidbody constraints instead
             //_chairMove.ClampRotation();
 
-            _cam.PosAndRot();
+            _cam.PosAndRot(_input.h_cam, _input.v_cam);
 
             if(_input.swap_move) LeaveChair();
         }

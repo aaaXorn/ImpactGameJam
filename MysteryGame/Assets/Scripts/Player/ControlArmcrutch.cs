@@ -52,7 +52,7 @@ namespace Player
         {
             if(!_input.isControlled) return;
 
-            _cam.PosAndRot(_input.h_cam);
+            _cam.PosAndRot(_input.h_cam, _input.v_cam);
 
             _crutchMove.WalkTimer(_input.h_move);
 
@@ -80,7 +80,6 @@ namespace Player
                 {
                     _lastHit = hit.collider;
                     _outline = _lastHit.GetComponent<OutlineHitbox>();
-                    print(_outline);
                 }
 
                 if(_outline != null)

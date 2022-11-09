@@ -11,9 +11,11 @@ public class CameraArmcrutch : MonoBehaviour
 
         [Tooltip("Base horizontal camera sensivity.")]
         [SerializeField] float _base_sensivity_h;
+        [Tooltip("Base vertical camera sensivity.")]
+        [SerializeField] float _base_sensivity_v;
 
         //horizontal rotation
-        float _hRot = 0;
+        float _hRot, _vRot;
 
         void Start()
         {
@@ -33,18 +35,21 @@ public class CameraArmcrutch : MonoBehaviour
         }
 
         //used in Update()
-        public void PosAndRot(float inputX)
+        public void PosAndRot(float inputX, float inputY)
         {
             //smoothes out the input
             inputX = inputX * Time.deltaTime * StaticVars.cam_sensivity * _base_sensivity_h;
 
             //sets the variables used to rotate
             _hRot += inputX;
+            _vRot -= inputY;
+            _vRot = Mathf.Clamp(_vRot, -90f, 90f);
             //rotates the player
             transform.rotation = Quaternion.Euler(transform.rotation.x, _hRot, transform.rotation.z);
 
             _camObj.transform.position = _camFollowObj.transform.position;
-            _camObj.transform.rotation = _camFollowObj.transform.rotation;
+            //rotates the camera
+            _camObj.transform.rotation = Quaternion.Euler(_vRot, _hRot, 0);
             //= Quaternion.RotateTowards(_camObj.transform.rotation, _camFollowObj.transform.rotation, _cam_rotSpd * Time.deltaTime);
         }
 }
