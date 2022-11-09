@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Pickups
 {
@@ -17,6 +18,8 @@ namespace Pickups
 
         [Tooltip("If true, this script's gameObject starts disabled.")]
         [SerializeField] bool _startInactive;
+
+        public UnityEvent PickupEvent;
 
         void Start()
         {

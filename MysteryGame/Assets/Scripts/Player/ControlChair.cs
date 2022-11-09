@@ -23,7 +23,10 @@ namespace Player
         InputReceiver _walkInput;
 
         [Tooltip("Detection collider for the player to return to the chair.")]
-        [SerializeField] GameObject _chairDetection;
+        [SerializeField] Collider _chairDetection;
+        [Tooltip("Detection collider for the player to leave to the chair.")]
+        [SerializeField] Collider _crutchDetection;
+        MeshRenderer _crutchMesh;
 
         void Awake()
         {
@@ -33,6 +36,9 @@ namespace Player
             _cam = GetComponent<CameraChair>();
 
             _walkInput = _objCrutch.GetComponent<InputReceiver>();
+
+            _crutchMesh = _crutchDetection.gameObject.GetComponent<MeshRenderer>();
+            if(!StaticVars.leave_chair_interaction) _crutchDetection.gameObject.SetActive(false);
         }
 
         void Update()
@@ -67,21 +73,29 @@ namespace Player
             _move.CustomDragWUp(1.25f);
         }
 
-        private void LeaveChair()
+        public void LeaveChair()
         {
             //exits the chair
             _objCrutch.SetActive(true);
             //moves the armcrutch player into position
             _objCrutch.transform.position = _crutchSwapPos.position;
 
-            RayHitboxSetActive(true);
+            ChairRaySetActive(true);
+            CrutchRaySetActive(false);
 
             InputManager.Instance.ChangeReceiver(_walkInput);
         }
 
-        public void RayHitboxSetActive(bool active)
+        public void ChairRaySetActive(bool active)
         {
-            _chairDetection.SetActive(active);
+            _chairDetection.enabled = active;
+        }
+        public void CrutchRaySetActive(bool active)
+        {
+            if(!StaticVars.leave_chair_interaction) return;
+
+            _crutchDetection.enabled = active;
+            _crutchMesh.enabled = active;
         }
     }
 }

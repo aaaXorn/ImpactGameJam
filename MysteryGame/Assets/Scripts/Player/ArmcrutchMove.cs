@@ -27,6 +27,9 @@ namespace Player
         [SerializeField] float _maxTimeDiff;
         float _walkCurrTimer;
 
+        [SerializeField] float _moveMaxTime;
+        float _moveCurrTime;
+
         float _timeDiff => Mathf.Abs(_targetTime - _walkTime);
         float _forceMod;
 
@@ -53,7 +56,6 @@ namespace Player
             if(_walkTime >= _walkMaxTime)
             {
                 _movePressed = false;
-                _forceMod = 0;
                 _walkTime = 0f;
             }
 
@@ -61,7 +63,7 @@ namespace Player
             {
                 if(_nextRight ? h_input >= 0.1f : h_input <= -0.1f)
                 {
-                    print("move");
+                    _moveCurrTime = _moveMaxTime;
                     _forceMod = _timeDiff / _targetTime;
                     _movePressed = true;
 
@@ -79,11 +81,13 @@ namespace Player
 
         public void CrutchMove()
         {
-            if(_forceMod == 0) return;
+            if(_forceMod == 0 || _moveCurrTime < 0) return;
 
             Vector3 dir = transform.forward * _moveDir;
             
             _move.MoveForce(dir, _forceMod);
+
+            _moveCurrTime -= Time.fixedDeltaTime;
         }
 
         public void CheckDirection(float v_input)

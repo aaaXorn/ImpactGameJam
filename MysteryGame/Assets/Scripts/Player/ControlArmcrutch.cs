@@ -56,7 +56,6 @@ namespace Player
 
             _crutchMove.WalkTimer(_input.h_move);
 
-            ReturnToChair();
             _crutchMove.CheckDirection(_input.v_move);
         }
 
@@ -67,34 +66,12 @@ namespace Player
             _crutchMove.CrutchMove();
         }
 
-        private void ReturnToChair()
+        public void ReturnToChair()
         {
-            Ray ray = new Ray(_transf_cam.position, transform.forward);
-            RaycastHit hit;
-
-            //check if the chair is in range
-            if(Physics.Raycast(ray, out hit, _chairReturnDist, _chairLM))
-            {
-                //interactable effect
-                if(_lastHit != hit.collider)
-                {
-                    _lastHit = hit.collider;
-                    _outline = _lastHit.GetComponent<OutlineHitbox>();
-                }
-
-                if(_outline != null)
-                {
-                    _outline.AimedAt();
-                }
-
-                //move into the chair
-                if(_input.swap_move)
-                {
-                    InputManager.Instance.ChangeReceiver(_chairInput);
-                    _chairControl.RayHitboxSetActive(false);
-                    gameObject.SetActive(false);
-                }
-            }
+            InputManager.Instance.ChangeReceiver(_chairInput);
+            _chairControl.ChairRaySetActive(false);
+            _chairControl.CrutchRaySetActive(true);
+            gameObject.SetActive(false);
         }
 
         private void OnDrawGizmosSelected()
