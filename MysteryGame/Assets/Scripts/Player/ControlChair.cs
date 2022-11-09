@@ -70,7 +70,7 @@ namespace Player
                 _move.MoveForce(dir_move);
             
             //rigidbody drag without Y
-            _move.CustomDragWUp(1.25f);
+            _move.CustomDrag();
         }
 
         public void LeaveChair()

@@ -22,10 +22,10 @@ namespace Player
         }
 
         //used in FixedUpdate()
-        public void MoveVelocity(Vector3 dir)
+        public void MoveVelocity(Vector3 dir, float mod = 1f)
         {
             //movement with rigidbody velocity
-            _rigid.velocity = new Vector3(dir.x * _moveSpd, _rigid.velocity.y, dir.z * _moveSpd);
+            _rigid.velocity = new Vector3(dir.x * _moveSpd * mod, _rigid.velocity.y, dir.z * _moveSpd * mod);
         }
 
         //used in FixedUpdate()

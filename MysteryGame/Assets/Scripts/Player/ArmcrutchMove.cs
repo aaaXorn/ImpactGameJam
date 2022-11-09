@@ -74,7 +74,7 @@ namespace Player
             }
 
             float bar = _timeDiff / _targetTime;
-            _img.fillAmount = 1 - bar;
+            _img.fillAmount = bar;
 
             _walkTime += Time.deltaTime;
         }
@@ -85,7 +85,7 @@ namespace Player
 
             Vector3 dir = transform.forward * _moveDir;
             
-            _move.MoveForce(dir, _forceMod);
+            _move.MoveVelocity(dir, _forceMod);
 
             _moveCurrTime -= Time.fixedDeltaTime;
         }
