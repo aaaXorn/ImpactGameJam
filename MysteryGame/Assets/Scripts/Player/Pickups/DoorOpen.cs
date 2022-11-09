@@ -8,12 +8,16 @@ public class DoorOpen : MonoBehaviour
 
     bool _isRunning;
 
+    [SerializeField] bool _needsKey;
+    public bool _hasKey;
+
     [SerializeField] float _doorSpd;
 
     public void OpenCloseDoor()
     {
+        if(_needsKey && !_hasKey) return;
+
         if(!_isRunning) StartCoroutine("OpenClose");
-        print("openclose");
     }
 
     private IEnumerator OpenClose()

@@ -24,6 +24,8 @@ namespace Pickups
         
         void Update()
         {
+            if(Pause._isPaused) return;
+
             InteractRay();
         }
 

@@ -50,7 +50,7 @@ namespace Player
 
         void Update()
         {
-            if(!_input.isControlled) return;
+            if(!_input.isControlled || Pause._isPaused) return;
 
             _cam.PosAndRot(_input.h_cam, _input.v_cam);
 
@@ -71,6 +71,7 @@ namespace Player
             InputManager.Instance.ChangeReceiver(_chairInput);
             _chairControl.ChairRaySetActive(false);
             _chairControl.CrutchRaySetActive(true);
+            _crutchMove.ResetBar();
             gameObject.SetActive(false);
         }
 

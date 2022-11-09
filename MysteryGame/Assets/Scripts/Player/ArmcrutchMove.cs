@@ -79,6 +79,12 @@ namespace Player
             _walkTime += Time.deltaTime;
         }
 
+        public void ResetBar()
+        {
+            _walkTime = 0f;
+            _img.fillAmount = 1f;
+        }
+
         public void CrutchMove()
         {
             if(_forceMod == 0 || _moveCurrTime < 0) return;

@@ -43,7 +43,7 @@ namespace Player
 
         void Update()
         {
-            if(!_input.isControlled) return;
+            if(!_input.isControlled || Pause._isPaused) return;
 
             //rotate the player
             if(_input.h_move != 0) _chairMove.RotateChair(_input.h_move);
@@ -54,7 +54,7 @@ namespace Player
 
             _cam.PosAndRot(_input.h_cam, _input.v_cam);
 
-            if(_input.swap_move) LeaveChair();
+            //if(_input.swap_move) LeaveChair();
         }
 
         void FixedUpdate()
