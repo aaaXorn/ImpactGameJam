@@ -39,6 +39,7 @@ public class CameraArmcrutch : MonoBehaviour
         {
             //smoothes out the input
             inputX = inputX * Time.deltaTime * StaticVars.cam_sensivity * _base_sensivity_h;
+            inputY = inputY * Time.deltaTime * StaticVars.cam_sensivity * _base_sensivity_v;
 
             //sets the variables used to rotate
             _hRot += inputX;

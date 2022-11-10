@@ -9,5 +9,6 @@ public class HardDrive : MonoBehaviour
     public void HDGet()
     {
         GE._finishOpen = true;
+        gameObject.SetActive(false);
     }
 }

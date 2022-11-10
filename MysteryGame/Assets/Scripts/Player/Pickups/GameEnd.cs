@@ -14,7 +14,7 @@ public class GameEnd : MonoBehaviour
     {
         if(!_finishOpen) return;
 
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Chair"))
+        if(other.gameObject.CompareTag("Player"))
         {
             Finish();
         }
@@ -22,6 +22,10 @@ public class GameEnd : MonoBehaviour
 
     private void Finish()
     {
+        if(!Pause._isPaused) Pause.Instance.PauseOrUnpause();
 
+        Pause.Instance.enabled = false;
+
+        EndScreen.SetActive(true);
     }
 }

@@ -6,9 +6,9 @@ public class StartTimer : MonoBehaviour
 {
     [SerializeField] Timer timer;
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Chair"))
+        if(other.gameObject.CompareTag("Player"))
         {
             timer.StartTimer();
             Destroy(gameObject);

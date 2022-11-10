@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
     static public bool _isPaused;
+
+    public static Pause Instance;
 
     float _timescale;
 
@@ -13,6 +16,7 @@ public class Pause : MonoBehaviour
     void Start()
     {
         _timescale = Time.timeScale;
+        Instance = this;
     }
 
     void Update()
@@ -23,7 +27,7 @@ public class Pause : MonoBehaviour
         }
     }
 
-    private void PauseOrUnpause()
+    public void PauseOrUnpause()
     {
         _isPaused = !_isPaused;
 
@@ -32,6 +36,13 @@ public class Pause : MonoBehaviour
 
         Cursor.lockState = !_isPaused ? CursorLockMode.Locked : CursorLockMode.None;;
         Cursor.visible = _isPaused;
+    }
+
+    public void TryAgain()
+    {
+        if(_isPaused) PauseOrUnpause();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()

@@ -22,6 +22,8 @@ public class BoxDrop : MonoBehaviour
 
     [SerializeField] DoorOpen door;
 
+    [SerializeField] GameObject _keyUI;
+
     void Start()
     {
         _pushForce *= step;
