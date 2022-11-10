@@ -13,6 +13,8 @@ public class DoorOpen : MonoBehaviour
 
     [SerializeField] float _doorSpd;
 
+    public Outline outline;
+
     public void OpenCloseDoor()
     {
         if(_needsKey && !_hasKey) return;

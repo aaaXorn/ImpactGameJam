@@ -54,7 +54,7 @@ namespace Pickups
             }
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             //draws the ReturnToChair raycast
             Debug.DrawRay(transform.position, transform.forward * _interactDist, Color.green);
