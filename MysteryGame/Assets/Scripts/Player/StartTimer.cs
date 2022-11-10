@@ -2,26 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEnd : MonoBehaviour
+public class StartTimer : MonoBehaviour
 {
-    public bool _finishOpen;
-
-    [SerializeField] GameObject EndScreen;
-
-    [SerializeField] Pause pause;
+    [SerializeField] Timer timer;
 
     void OnCollisionEnter(Collision other)
     {
-        if(!_finishOpen) return;
-
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Chair"))
         {
-            Finish();
+            timer.StartTimer();
+            Destroy(gameObject);
         }
-    }
-
-    private void Finish()
-    {
-
     }
 }

@@ -11,6 +11,10 @@ public class Timer : MonoBehaviour
 
     [SerializeField] GameObject _timerObj;
 
+    [SerializeField] GameObject GameOverScreen;
+
+    [SerializeField] Pause pause;
+
     void Update()
     {
         if(!_isActive) return;

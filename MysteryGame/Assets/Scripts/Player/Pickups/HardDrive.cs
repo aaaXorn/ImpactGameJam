@@ -5,4 +5,9 @@ using UnityEngine;
 public class HardDrive : MonoBehaviour
 {
     [SerializeField] GameEnd GE;
+
+    public void HDGet()
+    {
+        GE._finishOpen = true;
+    }
 }
