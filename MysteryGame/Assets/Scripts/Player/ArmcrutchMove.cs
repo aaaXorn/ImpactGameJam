@@ -38,6 +38,9 @@ namespace Player
         //if the next step will use h_move > 0
         bool _nextRight;
 
+        [SerializeField] Image[] img;
+        [SerializeField] Sprite[] spr;
+
         void Awake()
         {
             _rigid = GetComponent<Rigidbody>();
@@ -68,6 +71,9 @@ namespace Player
                     _movePressed = true;
 
                     _nextRight = !_nextRight;
+
+                    img[0].sprite = spr[!_nextRight ? 1 : 0];
+                    img[1].sprite = spr[_nextRight ? 1 : 0];
 
                     _tmpTxt.text = _nextRight ? "R" : "L";
                 }
