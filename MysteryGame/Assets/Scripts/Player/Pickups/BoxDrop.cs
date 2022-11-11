@@ -44,6 +44,7 @@ public class BoxDrop : MonoBehaviour
     {
         StartCoroutine("PushEffect");
     }
+    [SerializeField] string key_txt;
     private void GetKey()
     {
         if(door._hasKey) return;
@@ -51,6 +52,8 @@ public class BoxDrop : MonoBehaviour
         _outline.OutlineColor = _oldClr;
         door._hasKey = true;
         door.outline.OutlineColor = _newClrDoor;
+
+        Dialogue.Instance.ChangeText(key_txt);
     }
 
     private IEnumerator PushEffect()

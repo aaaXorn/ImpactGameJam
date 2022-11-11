@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class HardDrive : MonoBehaviour
 {
-    [SerializeField] GameEnd GE;
+    [SerializeField] GameEnd[] GE;
+
+    [SerializeField] string txt;
 
     public void HDGet()
     {
-        GE._finishOpen = true;
+        foreach(GameEnd end in GE)
+        {
+            end._finishOpen = true;
+        }
+        Dialogue.Instance.ChangeText(txt);
         gameObject.SetActive(false);
     }
 }

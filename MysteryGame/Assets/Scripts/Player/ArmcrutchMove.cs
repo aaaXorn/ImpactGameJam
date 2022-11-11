@@ -41,6 +41,8 @@ namespace Player
         [SerializeField] Image[] img;
         [SerializeField] Sprite[] spr;
 
+        //[SerializeField] 
+
         void Awake()
         {
             _rigid = GetComponent<Rigidbody>();
